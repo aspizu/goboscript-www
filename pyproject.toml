@@ -2,10 +2,15 @@
 name = "goboscript-www"
 version = "0.1.0"
 description = "Add your description here"
-authors = [
-    { name = "aspizu", email = "aspizu@protonmail.com" }
+authors = [{ name = "aspizu", email = "aspizu@protonmail.com" }]
+dependencies = [
+    "environs>=11.2.1",
+    "uvicorn>=0.34.0",
+    "psycopg[binary]>=3.2.3",
+    "starlette>=0.42.0",
+    "itsdangerous>=2.2.0",
+    "jinja2>=3.1.5",
 ]
-dependencies = []
 readme = "README.md"
 requires-python = ">= 3.8"
 
@@ -21,4 +26,21 @@ dev-dependencies = []
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/goboscript_www"]
+packages = ["src/backend"]
+
+[tool.pyright]
+typeCheckingMode = "strict"
+reportMissingTypeStubs = false
+reportUnknownArgumentType = false
+reportUnknownLambdaType = false
+reportUnknownMemberType = false
+reportUnknownParameterType = false
+reportUnknownVariableType = false
+
+[tool.ruff.lint]
+select = ["ALL"]
+extend-safe-fixes = ["ALL"]
+ignore = ["D", "COM", "S101", 'ANN401']
+
+[tool.ruff.lint.isort]
+required-imports = ["from __future__ import annotations"]
